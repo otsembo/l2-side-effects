@@ -12,6 +12,16 @@ function User(props){
         setCount(currentCount + 1)
     }
 
+    function fetchUser(){
+        fetch(RANDOM_USER_API)
+            .then((response) => response.json())
+            .then((data) => {
+                setName(data.results[0].name.first)
+                setEmail(data.results[0].email)
+            })
+    }
+
+    useEffect( fetchUser, [count] )
 
     return(
         <div>
